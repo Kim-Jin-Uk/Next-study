@@ -1,0 +1,30 @@
+{
+  "parserOptions": {
+//    그냥 년도 따라가도됨 취향 차이
+    "ecmaVersion": 2020,
+//    import export 스타일
+    "sourceType": "module",
+//    jsx사용을 위해
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+//  브라우저 및 노드에서 돌아가게 환경 세팅
+  "env": {
+    "browser": true,
+    "node": true
+  },
+//  기본 규칙들 - 다른 사람들이 만들어 놓은 규칙들 사용
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "import",
+    "react-hooks"
+  ],
+  "rules": {
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/anchor-is-valid": "off"
+  }
+}
