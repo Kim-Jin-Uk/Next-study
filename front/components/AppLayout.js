@@ -16,6 +16,9 @@ const AppLayout = ({children}) => {
                 <a href="/test">none prepetch test</a>
                 <div></div>
                 <a href="/test/custom">none prepetch custom</a>
+                <div></div>
+                {/*우리 페이지가 아니라면? 기존 a태그와 동일하게 돌아간다!*/}
+                <Link href={'https://github.com/Kim-Jin-Uk/Next-study'}><a>not our pages</a></Link>
             </div>
             {children}
         </>
