@@ -1,11 +1,14 @@
 import React from "react";
 import VideoComp from "../components/VideoComp/VideoComp";
+import AppLayout from "../components/AppLayout";
 
 const Home = () => {
     return(
         <>
-            <div>2주차</div>
-            <VideoComp></VideoComp>
+            <AppLayout>
+                <div>3주차</div>
+                <VideoComp></VideoComp>
+            </AppLayout>
         </>
     )
 }

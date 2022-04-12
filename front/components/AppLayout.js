@@ -1,26 +1,56 @@
 import React from "react";
 import PropTypes from 'prop-types'
 import Link from 'next/link'
+import {
+    Col, Input, Menu, Row,
+} from 'antd';
+import { createGlobalStyle } from 'styled-components';
+import LoginForm from './LoginForm';
+import UserProfile from './UserProfile';
+import useInput from '../hooks/useInput';
+import {useSelector} from "react-redux";
+
+const Global = createGlobalStyle`
+  .ant-row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  
+  .ant-col:first-child {
+      padding-left: 0 !important;
+  }
+  
+  .ant-col:last-child {
+    padding-right: 0 !important;
+  }
+`;
 
 const AppLayout = ({children}) => {
+    const user = useSelector((state) => state.user);
+    console.log("user",user)
+    const [searchInput, onChangeSearchInput] = useInput('');
+
     return(
         <>
-            <div>AppLayout component</div>
-            <div>
-                {/*<Link />를 사용할 경우 prefetch를 통해 페이지를 새로 고치지 않고 이동 가능*/}
-                <Link href={'/test'}><a>test</a></Link>
-                <div></div>
-                <Link href={'/test/custom'}><a>custom</a></Link>
-                <div></div>
-                {/*직접 확인해보자*/}
-                <a href="/test">none prepetch test</a>
-                <div></div>
-                <a href="/test/custom">none prepetch custom</a>
-                <div></div>
-                {/*우리 페이지가 아니라면? 기존 a태그와 동일하게 돌아간다!*/}
-                <Link href={'https://github.com/Kim-Jin-Uk/Next-study'}><a>not our pages</a></Link>
-            </div>
-            {children}
+            <Global />
+            <Menu mode="horizontal">
+                <Menu.Item key="mail">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzTxUeXy5f5jK8jwwSIO13WQV09KBUfywkjQ&usqp=CAU" alt="dogs" width={50}/>
+                </Menu.Item>
+            </Menu>
+            <Row gutter={8}>
+                <Col xs={24} md={6}>
+                    {user.isLogin
+                        ? <UserProfile />
+                        : <LoginForm />}
+                </Col>
+                <Col xs={24} md={12}>
+                    {children}
+                </Col>
+                <Col xs={24} md={6}>
+                    <a href="https://abiding-methane-eba.notion.site/1fb75c620b1e41e8b736a17ea24ad4b2" target="_blank" rel="noreferrer noopener">Made by Jindol</a>
+                </Col>
+            </Row>
         </>
     )
 }
