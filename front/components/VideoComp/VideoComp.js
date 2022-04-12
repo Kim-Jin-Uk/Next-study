@@ -1,22 +1,21 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import styles from './style.module.scss'
 import ReactPlayer from 'react-player/lazy'
-import {string} from "prop-types";
 
 const VideoComp = () => {
     const [playIndex, setPlayIndex] = useState(0);
     const playList = [
-        {index:1, url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'},
-        {index:2, url: 'http://sample.vodobox.net/skate_phantom_flex_4k/skate_phantom_flex_4k.m3u8'},
-        {index:3, url: 'http://playertest.longtailvideo.com/adaptive/wowzaid3/playlist.m3u8'}
-    ];
-    const handleNextVideo = (video, playIndex) => {
+        {url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'},
+        {url: 'http://sample.vodobox.net/skate_phantom_flex_4k/skate_phantom_flex_4k.m3u8'},
+        {url: 'http://playertest.longtailvideo.com/adaptive/wowzaid3/playlist.m3u8'}
+    ]
+    const handleNextVideo = useCallback((video, playIndex) => {
         if(playIndex === video.length - 1){
-            setPlayIndex(0);
+            setPlayIndex(0)
         }else{
-            setPlayIndex(playIndex + 1);
+            setPlayIndex(playIndex + 1)
         }
-    }
+    },[playIndex])
 
     return(
         <>
@@ -38,10 +37,6 @@ const VideoComp = () => {
             </div>
         </>
     )
-}
-
-VideoComp.propTypes = {
-    src: string,
 }
 
 export default VideoComp

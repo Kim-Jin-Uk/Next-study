@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
 const Name = () => {
@@ -9,6 +9,7 @@ const Name = () => {
         if (!router.isReady) return
         setName(router.query.name)
     },[router.isReady])
+
 
     return(
         <>
