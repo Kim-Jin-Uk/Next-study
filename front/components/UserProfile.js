@@ -1,42 +1,38 @@
-import {Avatar, Button, Card} from 'antd';
-import React, {useCallback, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { Avatar, Card, Button } from 'antd';
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Link from 'next/link';
-import {logOutAction} from "../reducers";
-// import { logoutRequestAction } from '../reducers/user';
+import { logoutRequestAction } from '../reducers/user';
 
 const UserProfile = function () {
   const dispatch = useDispatch();
-  //
-  const { userData } = useSelector((state) => state.user);
-  //
+
+  const { user, logOutLoading } = useSelector((state) => state.user);
+
   const onLogout = useCallback(() => {
-    dispatch(logOutAction());
+    dispatch(logoutRequestAction);
   }, []);
-    useEffect(() => {
-        console.log("userData",userData)
-    },[userData])
 
   return (
   // eslint-disable-next-line react/jsx-filename-extension
     <Card
       actions={[
         <div key="twit">
-          {/*<Link href={`/user/${user.id}`}>*/}
-          {/*  <a>*/}
-          {/*    짹짹*/}
-          {/*    <br />*/}
-          {/*    {user.Posts.length}*/}
-          {/*  </a>*/}
-          {/*</Link>*/}
+          <Link href={`/user/${user.id}`}>
+            <a>
+              짹짹
+              <br />
+              {user.Posts.length}
+            </a>
+          </Link>
         </div>,
         <div key="following">
           <Link href="/profile">
             <a>
               팔로잉
               <br />
-              {/*{user.Followings.length}*/}
+              {user.Followings.length}
             </a>
           </Link>
         </div>,
@@ -45,7 +41,7 @@ const UserProfile = function () {
             <a>
               팔로워
               <br />
-              {/*{user.Followers.length}*/}
+              {user.Followers.length}
             </a>
           </Link>
         </div>,
@@ -53,13 +49,13 @@ const UserProfile = function () {
     >
       <Card.Meta
         avatar={(
-          <Link href={`/user`}>
-            <a><Avatar>{userData.email.toUpperCase()[0]}</Avatar></a>
+          <Link href={`/user/${user.id}`}>
+            <a><Avatar>{user.nickname[0]}</Avatar></a>
           </Link>
           )}
-        title={userData.email}
+        title={user.nickname}
       />
-      <Button onClick={onLogout}>로그아웃</Button>
+      <Button onClick={onLogout} loading={logOutLoading}>로그아웃</Button>
     </Card>
   );
 };

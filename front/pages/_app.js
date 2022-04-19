@@ -1,25 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Head from "next/head";
-import wrapper from "../store/configureStore";
+import React from 'react';
+import Head from 'next/head';
+import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
 
-const App = ({Component}) =>{
+import wrapper from '../store/configureStore';
 
-    return(
-        <>
-            <Head>
-                <meta charSet={'utf-8'}/>
-                {/*웹 이름 설정해보기*/}
-                <title>Jindol Web</title>
-            </Head>
-            <Component></Component>
-        </>
-    )
-}
+const NodeBird = function ({ Component }) {
+  return (
+  // eslint-disable-next-line react/jsx-filename-extension
+    <>
+      <Head>
+        <title>NodeBird</title>
+      </Head>
+      <Component />
+    </>
+  );
+};
 
-App.propTypes = {
-    Component: PropTypes.elementType.isRequired,
-}
+NodeBird.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+};
 
-export default wrapper.withRedux(App)
+export default wrapper.withRedux(NodeBird);
