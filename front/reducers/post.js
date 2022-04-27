@@ -188,6 +188,17 @@ export default (state = initialState, action) => produce(state, (draft) => {
       post.Comments.unshift(action.data);
       draft.addCommentLoading = false;
       draft.addCommentDone = true;
+      // const postIndex = state.mainPosts.findIndex((v) => v.id === action.data.postId);
+      // const post = {...state.mainPosts[postIndex]};
+      // post.Comments = [action.data, ...post.Comments];
+      // const mainPost = [...state.mainPosts];
+      // mainPosts[postIndex] = post;
+      // return {
+      //    ...state,
+      //    mainPosts,
+      //    addCommentLoading: false,
+      //    addCommentDone: true,
+      // };
       break;
     }
     case ADD_COMMENT_FAILURE:

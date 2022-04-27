@@ -1,4 +1,4 @@
-import produce from 'immer';
+import produce from 'immer';//불변성 유지
 import { ADD_POST_TO_ME, REMOVE_POST_OF_ME } from './post';
 
 export const initialState = {
