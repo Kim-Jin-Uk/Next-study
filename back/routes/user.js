@@ -7,6 +7,7 @@ const {isLoggendIn, isNotLoggendIn} = require('./middlewares')
 const {Op} = require("sequelize");
 
 router.get('/',async (req,res,next)=>{
+    console.log(req.headers)
     try {
         if (req.user){
             const user = await User.findOne({

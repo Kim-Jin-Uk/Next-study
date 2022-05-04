@@ -12,12 +12,14 @@ import FollowList from '../components/FollowList';
 import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
 
+//swr사용하기 위한 변수
 const fetcher = (url) => axios.get(url, { withCredentials: true }).then((result) => result.data);
 
 const Profile = function () {
   const { user } = useSelector((state) => state.user);
   const [followersLimit, setFollowersLimit] = useState(3);
   const [followingsLimit, setFollowingsLimit] = useState(3);
+  //swr로 데이터 받아오기
   const { data: followersData, error: followerError } = useSWR(`http://localhost:3065/user/followers?limit=${followersLimit}`, fetcher);
   const { data: followingsData, error: followingError } = useSWR(`http://localhost:3065/user/followings?limit=${followingsLimit}`, fetcher);
 
